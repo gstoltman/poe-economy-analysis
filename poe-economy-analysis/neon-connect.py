@@ -13,21 +13,8 @@ PASSWORD = getpass.getpass('Password: ')
 HOST = "ep-noisy-rice-787875.us-west-2.aws.neon.tech"
 PORT = "5432"
 PROJECT = "currency"
-CONNSTR = f'postgresql://{USERNAME}:{PASSWORD}@{HOST}/neondb'
+CONNSTR = f'postgresql://{USERNAME}:{PASSWORD}@{HOST}/{PROJECT}'
 
 engine = create_engine(CONNSTR)
 
-Session = sessionmaker(bind=engine)
-session = Session()
-
-Base = declarative_base()
-
-class MyTable(Base):
-    __tablename__ = 'currency'
-    id = Column(Integer, primary_key=True)
-    league = Column(String)
-    get = Column(String)
-    pay = Column(String)
-    value = Column(Float)
-
-Base.metadata.create_all(engine)
+print(CONNSTR)
